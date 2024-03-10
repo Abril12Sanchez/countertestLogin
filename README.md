@@ -1,17 +1,5 @@
-# Contador con Flutter
+# Pagina de Login con Flutter y Firebase
 
-Este proyecto es un contador con flutter, en donde se puede incrementar, decrementar y reiniciar el contador. 
-![image](https://github.com/Abril12Sanchez/countertest-Contador-con-Flutter-/assets/137373616/3025f19e-9123-4398-b122-1bbf279c5b66)
+Este proyecto es echa con Flutter y con conexion a Firebase, para inicios de sesion y autenticacion. 
+![image](https://github.com/Abril12Sanchez/countertestLogin/assets/137373616/09ccac72-c29d-49d7-8dd0-51ca4c26aed1)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
