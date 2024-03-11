@@ -18,15 +18,16 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options:DefaultFirebaseOptions.currentPlatform); 
   // options:DefaultFirebaseOptions.currentPlatform
-  if (kIsWeb) {
-    // initialiaze the facebook javascript SDK
-    await FacebookAuth.i.webAndDesktopInitialize(
-      appId: "",
-      cookie: true,
-      xfbml: true,
-      version: "v15.0",
-    );
-  }
+  
+  // if (kIsWeb) {
+  //   // initialiaze the facebook javascript SDK
+  //   await FacebookAuth.i.webAndDesktopInitialize(
+  //     appId: "",
+  //     cookie: true,
+  //     xfbml: true,
+  //     version: "v15.0",
+  //   );
+  // }
   runApp(const MyApp());
 }
 

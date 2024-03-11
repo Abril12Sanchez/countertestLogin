@@ -65,4 +65,13 @@ class DefaultFirebaseOptions {
     projectId: 'auten2',
     storageBucket: 'auten2.appspot.com',
   );
+
+  //  static const FirebaseOptions ios = FirebaseOptions(
+  //   apiKey:,
+  //   appId:'1:588780253868:android:3c95b1674c9229ad076509',
+  //   projectId: 'auten2',
+  //   storageBucket: 'auten2.appspot.com',
+  // );
 }
+
+ 

@@ -1,48 +1,20 @@
 //importM
-// import 'dart:html';
 import 'package:countertest/pages/nuevaSesion_page.dart';
-// import 'package:countertest/pages/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
-// ignore: depend_on_referenced_packages
+
 // ----------
 final TextEditingController _emailController = TextEditingController();
 final TextEditingController _passwordController = TextEditingController();
 
-// Future<UserCredential> signInWithGoogle() async {
-// Future<UserCredential> signInWithGoogle() async {
-//   // Trigger the authentication flow
-//   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-//   // Obtain the auth details from the request
-//   final GoogleSignInAuthentication? googleAuth =
-//       await googleUser?.authentication;
-
-//   // Create a new credential
-//   final credential = GoogleAuthProvider.credential(
-//     accessToken: googleAuth?.accessToken,
-//     idToken: googleAuth?.idToken,
-//   );
-
-//   // Once signed in, return the UserCredential
-//   return await FirebaseAuth.instance.signInWithCredential(credential);
-// }
-
+// // Para GOOGLE
 Future<void> signInWithGoogle(BuildContext context) async {
   // Trigger the authentication flow
-  final  GoogleSignIn _googleSignIn = GoogleSignIn(
-    
-  clientId:'107433726896390261354.apps.googleusercontent.com',
-);
-
   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-  // Obtain the auth details from the request
-  final GoogleSignInAuthentication? googleAuth =
-      await googleUser?.authentication;
   if (googleUser != null) {
     // Obtain the auth details from the request
     final GoogleSignInAuthentication googleAuth =
@@ -83,91 +55,38 @@ Future<void> signInWithGoogle(BuildContext context) async {
 }
 
 
+// Future<void> signInWithGoogle(BuildContext context) async {
+//   try {
+//     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+//     if (googleUser == null) return; // El usuario canceló el inicio de sesión
 
+//     final GoogleSignInAuthentication googleAuth =
+//         await googleUser.authentication;
+//     final AuthCredential credential = GoogleAuthProvider.credential(
+//       accessToken: googleAuth.accessToken,
+//       idToken: googleAuth.idToken,
+//     );
 
-
-
-
-//  final FirebaseAuthService _auth = FirebaseAuthService();
-//   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-// final GoogleSignIn _googleSignIn = GoogleSignIn();
-// _signInWithGoogle(BuildContext context, user)async{
-
-
-//   Future<void> signInWithGoogle(BuildContext context) async {
-
-//     // final GoogleSignIn _googleSignIn = GoogleSignIn();
-//   final  GoogleSignIn _googleSignIn = GoogleSignIn(
-    
-//   clientId:'107433726896390261354.apps.googleusercontent.com',
-// );
-
-//     try {
-
-//       final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-
-//       if(googleSignInAccount != null ){
-//         final GoogleSignInAuthentication googleSignInAuthentication = await
-//         googleSignInAccount.authentication;
-
-//         final AuthCredential credential = GoogleAuthProvider.credential(
-//           idToken: googleSignInAuthentication.idToken,
-//           accessToken: googleSignInAuthentication.accessToken,
-//         );
-//  await FirebaseAuth.instance.signInWithCredential(credential);
-    
-//     Navigator.pushNamed(context, '/home');
-//         // await _firebaseAuth.signInWithCredential(credential);
-//         // Navigator.pushNamed(context, "/home");
-//       }
-
-//     }catch(e) {
-// // showToast(message: "some error occured $e");
-// print('Error al iniciar sesión con Google: $e');
-//     }
-
-
-//   }
-
-
-//  Future<void> signInWithGoogle(BuildContext context) async {
-
-//     final GoogleSignIn _googleSignIn = GoogleSignIn();
-
-//     try {
-
-//       final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-
-//       if(googleSignInAccount != null ){
-//         final GoogleSignInAuthentication googleSignInAuthentication = await
-//         googleSignInAccount.authentication;
-
-//         final AuthCredential credential = GoogleAuthProvider.credential(
-//           idToken: googleSignInAuthentication.idToken,
-//           accessToken: googleSignInAuthentication.accessToken,
-//         );
-//         final UserCredential authResult =
+//     final UserCredential authResult =
 //         await FirebaseAuth.instance.signInWithCredential(credential);
 //     final User user = authResult.user!;
 //     print('Inició sesión con Google: ${user.displayName}');
 //     // Redirige al usuario a la pantalla principal (home) y mandar user para improimir en home
 //     // ignore: use_build_context_synchronously
-//     Navigator.pushNamed(context, '/home', arguments: user.displayName);
-
-//         // await _firebaseAuth.signInWithCredential(credential);
-//         // Navigator.pushNamed(context, '/home', arguments: user.displayName);
-//       }
-
-//     }catch(e) {
-//      print('Error al iniciar sesión con Google: $e');
-//     }
-
-
+//     Navigator.pushNamed(context, '', arguments: user.displayName);
+//   } catch (e) {
+//     print('Error al iniciar sesión con Google: $e');
 //   }
+// }
+
 
 // Future<void> signInWithGoogle(BuildContext context) async {
 //   try {
 //     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+//     final GoogleSignIn _googleSignIn = GoogleSignIn(
+//   clientId: '588780253868-1ml56bbvr7s48qmo9af0gpqenijc79rb.apps.googleusercontent.com',
+//   );
+
 //     if (googleUser == null) return; // El usuario canceló el inicio de sesión
 
 //     final GoogleSignInAuthentication googleAuth =
@@ -190,10 +109,7 @@ Future<void> signInWithGoogle(BuildContext context) async {
 // }
 
 
-
-
-
-
+// -------------------------
 Future<void> registerWithEmailAndPassword(String email, String password) async {
   try {
     final credential =
@@ -220,7 +136,7 @@ Future<void> signInWithEmailAndPassword(
         .signInWithEmailAndPassword(email: email, password: password);
     // Usuario inició sesión exitosamente, navegar a la página principal
     // ignore: use_build_context_synchronously
-    Navigator.pushNamed(context, '/home');
+    Navigator.pushNamed(context, '' );
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {
       // print('No se encontró ningún usuario con ese correo electrónico.');
@@ -230,60 +146,7 @@ Future<void> signInWithEmailAndPassword(
   }
 }
 
-// Future<void> signInWithGoogle(BuildContext context) async {
-//   try {
-//     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-//     if (googleUser == null) return; // El usuario canceló el inicio de sesión
-
-//     final GoogleSignInAuthentication googleAuth =
-//         await googleUser.authentication;
-//     final AuthCredential credential = GoogleAuthProvider.credential(
-//       accessToken: googleAuth.accessToken,
-//       idToken: googleAuth.idToken,
-//     );
-
-//     final UserCredential authResult =
-//         await FirebaseAuth.instance.signInWithCredential(credential);
-//     final User user = authResult.user!;
-//     print('Inició sesión con Google: ${user.displayName}');
-//     // Redirige al usuario a la pantalla principal (home) y mandar user para improimir en home
-//     // ignore: use_build_context_synchronously
-//     Navigator.pushNamed(context, '/home', arguments: user.displayName);
-//   } catch (e) {
-//     print('Error al iniciar sesión con Google: $e');
-//   }
-// }
-
-// Future<void> signInWithEmailAndPassword(
-//     String email, String password, BuildContext context) async {
-//   try {
-//     final credential = await FirebaseAuth.instance
-//         .signInWithEmailAndPassword(email: email, password: password);
-//     // Usuario inició sesión exitosamente, navegar a la página principal
-//     // ignore: use_build_context_synchronously
-//     Navigator.pushReplacement(
-//       context,
-//       MaterialPageRoute(builder: (context) => const LoginPage()),
-//     );
-//   } on FirebaseAuthException catch (e) {
-//     if (e.code == 'user-not-found') {
-//       print('No user found for that email.');
-//     } else if (e.code == 'wrong-password') {
-//       print('Wrong password provided for that user.');
-//     }
-//   }
-// }
-
-
-
-
 // ---------
-
-
-
-
-
-
 
 //stfulW
 class LoginPage extends StatefulWidget {
@@ -297,15 +160,12 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body:Stack(
-        children: [
-          Fondo(),
-          Contenido(),
-
-        ],
-      )
-
-    );
+        body: Stack(
+      children: [
+        Fondo(),
+        Contenido(),
+      ],
+    ));
   }
 }
 
@@ -315,8 +175,10 @@ class Fondo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container( //min propiedad may widget, los wid aceptan propiedades
-      decoration: const BoxDecoration(gradient: LinearGradient(
+    return Container(
+      //min propiedad may widget, los wid aceptan propiedades
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(
         colors: [
           Color.fromARGB(255, 125, 190, 243),
           Colors.blue,
@@ -328,7 +190,7 @@ class Fondo extends StatelessWidget {
   }
 }
 
-//StatefulW 
+//StatefulW
 class Contenido extends StatefulWidget {
   const Contenido({super.key});
 
@@ -345,34 +207,31 @@ class _ContenidoState extends State<Contenido> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Login',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 28,
+          Text(
+            'Login',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 28,
+            ),
           ),
+          SizedBox(
+            height: 5,
           ),
-          
-          SizedBox(height: 5,),
-
-          Text( 'Welcome to your count',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-            letterSpacing: 1.5,
+          Text(
+            'Welcome to your count',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+              letterSpacing: 1.5,
+            ),
           ),
-          ),
-          SizedBox(height:15),
-
+          SizedBox(height: 15),
           Datos(),
-          
-
-          SizedBox(height: 20,),
-
-        Politica(),
-
-
-
+          SizedBox(
+            height: 20,
+          ),
+          Politica(),
         ],
       ),
     );
@@ -387,98 +246,80 @@ class Datos extends StatefulWidget {
 }
 
 class _DatosState extends State<Datos> {
-  bool showPass=true;
+  bool showPass = true;
   // final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
-
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
-        ),
-
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         const Text('Email',
-         style: TextStyle(
-          color: Colors.black ,
-          fontWeight: FontWeight.bold,
-          fontSize: 15,
+          const Text(
+            'Email',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+            ),
           ),
+          const SizedBox(
+            height: 5,
           ),
-         const SizedBox(height: 5,),
-
           TextFormField(
             controller: _emailController,
             keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'micorreo@micorreo.com'
+                border: OutlineInputBorder(),
+                hintText: 'micorreo@micorreo.com'),
           ),
+          const SizedBox(
+            height: 5,
           ),
-          const SizedBox(height: 5,),
-
-        const Text('Password',
-         style: TextStyle(
-          color: Colors.black ,
-          fontWeight: FontWeight.bold,
-          fontSize: 15,
+          const Text(
+            'Password',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+            ),
           ),
+          const SizedBox(
+            height: 5,
           ),
-          const SizedBox(height: 5,),
           TextFormField(
             controller: _passwordController,
             obscureText: showPass,
-            decoration:  InputDecoration(
-              border: const OutlineInputBorder(),
-              hintText: 'Password',
-              suffixIcon: IconButton(
-                icon:  const Icon( Icons.remove_red_eye_outlined),
-              onPressed: () {
-                // setState((){
-                //   showPass == true ? showPass=false: showPass=true;
-                // })
-                 setState(() {
+            decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                hintText: 'Password',
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.remove_red_eye_outlined),
+                  onPressed: () {
+                    // setState((){
+                    //   showPass == true ? showPass=false: showPass=true;
+                    // })
+                    setState(() {
                       showPass = !showPass;
                     });
-
-              },
-              )
+                  },
+                )),
           ),
+          const Remember(),
+          const SizedBox(
+            height: 30,
           ),
-          
-         const  Remember(),
-         const SizedBox(height: 30,),
-         const Botones(),
+          const Botones(),
         ],
-        
       ),
-     
     );
   }
 }
-
-
-
-
-// class Botones extends StatefulWidget {
-//   const Botones({super.key});
-
-//   @override
-//   State<Botones> createState() => _BotonesState();
-// }
-
-// class _BotonesState extends State<Botones> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }
-
 
 class Botones extends StatelessWidget {
   // const Botones({super.key});
@@ -493,61 +334,47 @@ class Botones extends StatelessWidget {
           width: double.infinity,
           height: 50,
           child: ElevatedButton(
-           onPressed: () {
-  signInWithEmailAndPassword(_emailController.text, _passwordController.text, context)
-    .then((user) {
-      
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Datos incorrectos')),
-      );
-      
-    }).catchError((error) {
-      // Si el inicio de sesión es exitoso, muestra un SnackBar y luego redirige
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Iniciando sesión...')),
-      );
-      // Utiliza Future.delayed para esperar que el SnackBar se muestre antes de navegar
-      Future.delayed(const Duration(seconds: 2), () {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const NuevaPagina()));
-      });
+            onPressed: () {
+              signInWithEmailAndPassword(
+                      _emailController.text, _passwordController.text, context)
+                  .then((user) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Datos incorrectos')),
+                );
+              }).catchError((error) {
+                // Si el inicio de sesión es exitoso, muestra un SnackBar y luego redirige
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Iniciando sesión...')),
+                );
+                // Utiliza Future.delayed para esperar que el SnackBar se muestre antes de navegar
+                Future.delayed(const Duration(seconds: 2), () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const NuevaPagina()));
+                });
 
-
-
-      // Si hay un error, maneja el error aquí
-      // print(error);
-    });
-},
-
-//             onPressed: () {
-//   signInWithEmailAndPassword(_emailController.text, _passwordController.text, context)
-//     .then((user) {
-//       // Si el inicio de sesión es exitoso, redirige a la nueva página
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         const SnackBar(content: Text('Iniciando sesión...')),
-//       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const NuevaPagina()));
-//     }).catchError((error) {
-//       // Si hay un error, maneja el error aquí
-//       print(error);
-//     });
-// },
-
-
-
-
-
+                // Si hay un error, maneja el error aquí
+                // print(error);
+              });
+            },
             style: ButtonStyle(
-              backgroundColor:  MaterialStateProperty.all<Color>(const Color(0xff142047)),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)))
-            ),
-            child: const Text('Login', 
-            style: TextStyle(color: Colors.white
-            ),
-            ),
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(const Color(0xff142047)),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)))),
+            child: const Text(
+              'Login',
+              style: TextStyle(color: Colors.white),
             ),
           ),
-          const SizedBox(height: 25,
-          width: double.infinity,),
-// Boton para registrarse 
+        ),
+        const SizedBox(
+          height: 25,
+          width: double.infinity,
+        ),
+// Boton para registrarse
         SizedBox(
           width: double.infinity,
           height: 50,
@@ -556,27 +383,26 @@ class Botones extends StatelessWidget {
             //     Navigator.pushNamed(context, '/register');
             //   },
 
-
-
-       onPressed: () {
-  registerWithEmailAndPassword(_emailController.text, _passwordController.text)
-    .then((user) {
-      // Si el inicio de sesión es exitoso, muestra un SnackBar y luego redirige
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Registrado correctamente')),
-      );
-      // Utiliza Future.delayed para esperar que el SnackBar se muestre antes de navegar
-      // Future.delayed(const Duration(seconds: 2), () {
-      //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const NuevaPagina()));
-      // });
-    }).catchError((error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Error al registrar')),
-      );
-      // Si hay un error, maneja el error aquí
-      // print(error);
-    });
-},
+            onPressed: () {
+              registerWithEmailAndPassword(
+                      _emailController.text, _passwordController.text)
+                  .then((user) {
+                // Si el inicio de sesión es exitoso, muestra un SnackBar y luego redirige
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Registrado correctamente')),
+                );
+                // Utiliza Future.delayed para esperar que el SnackBar se muestre antes de navegar
+                // Future.delayed(const Duration(seconds: 2), () {
+                //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const NuevaPagina()));
+                // });
+              }).catchError((error) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Error al registrar')),
+                );
+                // Si hay un error, maneja el error aquí
+                // print(error);
+              });
+            },
 
             // onPressed: () async {
             //   registerWithEmailAndPassword(
@@ -584,64 +410,87 @@ class Botones extends StatelessWidget {
             // },
 
             style: ButtonStyle(
-              backgroundColor:  MaterialStateProperty.all<Color>(const Color(0xff142047)),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)))
-            ),
-            child: const Text('Registro', 
-            style: TextStyle(color: Colors.white
-            ),
-            ),
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(const Color(0xff142047)),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)))),
+            child: const Text(
+              'Registro',
+              style: TextStyle(color: Colors.white),
             ),
           ),
-          const SizedBox(height: 25,
-          width: double.infinity,),
-
-        const Text('or sign with',
-        style: TextStyle(color: Colors.grey,),
         ),
-        const SizedBox(height: 25,
-          width: double.infinity,),
+        const SizedBox(
+          height: 25,
+          width: double.infinity,
+        ),
+
+        const Text(
+          'or sign with',
+          style: TextStyle(
+            color: Colors.grey,
+          ),
+        ),
+        const SizedBox(
+          height: 25,
+          width: double.infinity,
+        ),
         SizedBox(
           width: double.infinity,
           height: 50,
-          
-          child:OutlinedButton(
-            onPressed: () async {
-                await signInWithGoogle(context);
-              },
-            
+          child: OutlinedButton(
+            // onPressed: () async {
+            //   await signInWithGoogle(context);
+            // },
+
             //  onPressed: () => {
             //   _signInWithGoogle
             //   // signInWithGoogle(context)
             //   },
-            // onPressed: () => {signInWithGoogle(context)},
-            child: const Text('Google', style: TextStyle(color: Color(0xff142047), 
-            fontWeight: FontWeight.bold,
-            fontSize: 18,),),
-          ), 
+            onPressed: () => {
+              signInWithGoogle(context)
+            }, //signInWithGoogle(context)
+            child: const Text(
+              'Google',
+              style: TextStyle(
+                color: Color(0xff142047),
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+          ),
         ),
         //  GestureDetector(
         //         onTap: () {
-                  
+
         //         },
         //           ),
-         const SizedBox(height: 15,
-          width: double.infinity,),
+        const SizedBox(
+          height: 15,
+          width: double.infinity,
+        ),
 
-         SizedBox(
+        SizedBox(
           width: double.infinity,
           height: 50,
           child: OutlinedButton(
             onPressed: () => {},
-            child: const Text('Facebook', style: TextStyle(color: Color(0xff142047), 
-            fontWeight: FontWeight.bold,
-            fontSize: 18,),),
+            child: const Text(
+              'Facebook',
+              style: TextStyle(
+                color: Color(0xff142047),
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
           ),
         ),
 
-         const SizedBox(height: 15,
-          width: double.infinity,),
-
+        const SizedBox(
+          height: 15,
+          width: double.infinity,
+        ),
       ],
     );
   }
@@ -655,25 +504,21 @@ class Politica extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-       const Text ('Read user'),
-      //  const Spacer(),
+        const Text('Read user'),
+        //  const Spacer(),
         TextButton(
-          onPressed: ()=>{},
-          child: const Text('Privacy Policy', style: TextStyle(fontSize: 15, color: Colors.white),),
-          
+          onPressed: () => {},
+          child: const Text(
+            'Privacy Policy',
+            style: TextStyle(fontSize: 15, color: Colors.white),
+          ),
         ),
-      
       ],
     );
-    
   }
 }
 
-
-
-
 // si va a tener funcionamiento  statefulW
-
 
 class Remember extends StatefulWidget {
   const Remember({super.key});
@@ -729,12 +574,15 @@ class ForgotPasswordPage extends StatelessWidget {
         title: const Text('Forgot Password'),
       ),
       body: Center(
-        child: Column( // Utilizamos un Column para tener múltiples hijos
+        child: Column(
+          // Utilizamos un Column para tener múltiples hijos
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           const Text(
+            const Text(
               'Pagina para recuperar contraseña',
-              style: TextStyle(fontSize: 16), // Ajusta el tamaño del texto según tus necesidades
+              style: TextStyle(
+                  fontSize:
+                      16), // Ajusta el tamaño del texto según tus necesidades
             ),
             const SizedBox(height: 20), // Espacio entre los elementos
             ElevatedButton(
@@ -751,7 +599,6 @@ class ForgotPasswordPage extends StatelessWidget {
   }
 }
 
-
 void main() {
   runApp(MaterialApp(
     home: Scaffold(
@@ -762,4 +609,3 @@ void main() {
     ),
   ));
 }
-

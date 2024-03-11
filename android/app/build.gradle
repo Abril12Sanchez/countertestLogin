@@ -1,5 +1,5 @@
 plugins {
-    id "com.android.application"
+    id("com.android.application")
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
     id("com.google.gms.google-services")
@@ -9,7 +9,7 @@ def localProperties = new Properties()
 
 dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
-    implementation(platform("com.google.firebase:firebase-bom:32.7.3"))
+    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
 } apply plugin: 'com.google.gms.google-services'
 
 def localPropertiesFile = rootProject.file('local.properties')
@@ -72,5 +72,5 @@ flutter {
 }
 
 dependencies {
-
+implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
 }
